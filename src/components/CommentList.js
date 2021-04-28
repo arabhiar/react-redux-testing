@@ -9,6 +9,7 @@ const CommentList = () => {
 
   return (
     <div>
+      <h4>CommentList</h4>
       <ul>{renderComments()}</ul>
     </div>
   );
