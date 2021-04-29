@@ -20,7 +20,6 @@ it('should show a comment box', () => {
       </MemoryRouter>
     </Root>
   );
-
   wrapper.find('.sign-in').simulate('click');
   wrapper.update();
   wrapper.find('.to-post a').simulate('click', {

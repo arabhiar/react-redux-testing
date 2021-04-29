@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { saveComment, fetchComments } from 'actions';
+import requireAuth from 'hocs/requireAuth';
 
 const CommentBox = (props) => {
   const [comment, setComment] = useState('');
@@ -20,7 +21,7 @@ const CommentBox = (props) => {
   };
 
   return (
-    <div>
+    <div className='comment-box'>
       <form onSubmit={handleSubmit}>
         <h4>Add a Comment</h4>
         <textarea
@@ -31,9 +32,11 @@ const CommentBox = (props) => {
           <button>Submit Comment</button>
         </div>
       </form>
-      <button className='fetch-comments' onClick={handleClick}>Fetch Comments</button>
+      <button className="fetch-comments" onClick={handleClick}>
+        Fetch Comments
+      </button>
     </div>
   );
 };
 
-export default CommentBox;
+export default requireAuth(CommentBox);

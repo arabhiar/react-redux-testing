@@ -12,9 +12,13 @@ const App = () => {
 
   const renderButton = () => {
     return auth ? (
-      <button onClick={() => dispatch(changeAuth(false))}>Sign Out</button>
+      <button className="sign-out" onClick={() => dispatch(changeAuth(false))}>
+        Sign Out
+      </button>
     ) : (
-      <button onClick={() => dispatch(changeAuth(true))}>Sign In</button>
+      <button className="sign-in" onClick={() => dispatch(changeAuth(true))}>
+        Sign In
+      </button>
     );
   };
 
@@ -22,9 +26,9 @@ const App = () => {
     return (
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link className='to-home' to="/">Home</Link>
         </li>
-        <li>
+        <li className="to-post">
           <Link to="/post">Post a Comment</Link>
         </li>
         <li>{renderButton()}</li>
