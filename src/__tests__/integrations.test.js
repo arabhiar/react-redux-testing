@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import moxios from 'moxios';
+import { MemoryRouter } from 'react-router-dom';
 
 import Root from 'Root';
 import App from 'components/App';
@@ -18,19 +19,26 @@ afterEach(() => {
 });
 
 it('should fetch a list of comments and display them', (done) => {
-  const wrapped = mount(
+  const wrapper = mount(
     <Root>
-      <App />
+      <MemoryRouter initialEntries={['/post']}>
+        <App />
+      </MemoryRouter>
     </Root>
   );
-
-  wrapped.find('.fetch-comments').simulate('click');
+  wrapper.find('.sign-in').simulate('click');
+  wrapper.update();
+  wrapper.find('.to-post a').simulate('click', { button: 0 });
+  wrapper.update();
+  wrapper.find('.fetch-comments').simulate('click');
   moxios.wait(() => {
-    wrapped.update();
-
-    expect(wrapped.find('li').length).toEqual(2);
+    wrapper.update();
+    wrapper.find('.to-home a').simulate('click', { button: 0 });
+    wrapper.update();
+    // console.log(wrapper.find('.all-comments li').debug());
+    expect(wrapper.find('.all-comments li').length).toEqual(2);
 
     done();
-    wrapped.unmount();
+    wrapper.unmount();
   });
 });
