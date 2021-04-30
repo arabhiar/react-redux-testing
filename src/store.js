@@ -1,11 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reduxPromise from 'redux-promise';
+// import reduxPromise from 'redux-promise';
+import async from 'middlewares/async';
+import stateValidator from 'middlewares/stateValidator';
 
 import reducers from 'reducers';
 
-const middleware = [thunk, reduxPromise];
+const middleware = [async, stateValidator];
 
 const myStore = (initialState) => {
   const store = createStore(

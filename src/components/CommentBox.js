@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { saveComment, fetchComments } from 'actions';
 import requireAuth from 'hocs/requireAuth';
@@ -21,7 +21,7 @@ const CommentBox = (props) => {
   };
 
   return (
-    <div className='comment-box'>
+    <div className="comment-box">
       <form onSubmit={handleSubmit}>
         <h4>Add a Comment</h4>
         <textarea
